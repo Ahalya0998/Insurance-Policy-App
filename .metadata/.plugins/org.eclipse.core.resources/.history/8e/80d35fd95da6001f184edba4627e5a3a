@@ -1,0 +1,98 @@
+//package com.insurance.service;
+//
+//import com.insurance.model.Policy;
+//import com.insurance.repository.PolicyRepository;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Service;
+//
+//import java.util.List;
+//
+//@Service
+//public class PolicyService {
+//
+//    @Autowired
+//    private PolicyRepository policyRepository;
+//
+//    public List<Policy> getAllPolicies() {
+//        return policyRepository.findAll();
+//    }
+//
+//    public Policy addPolicy(Policy policy) {
+//        return policyRepository.save(policy);
+//    }
+//
+//    public Policy updatePolicy(int id, Policy policy) {
+//        policy.setId(id);
+//        return policyRepository.save(policy);
+//    }
+//
+//    public void deletePolicy(int id) {
+//        policyRepository.deleteById(id);
+//    }
+//}
+
+//package com.insurance.service;
+//
+//import com.insurance.model.Policy;
+//import com.insurance.repository.PolicyRepository;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Service;
+//
+//import java.util.List;
+//
+//@Service
+//public class PolicyService {
+//
+//    @Autowired
+//    private PolicyRepository policyRepository;
+//
+//    // Get all policies
+//    public List<Policy> getAllPolicies() {
+//        return policyRepository.findAll();
+//    }
+//
+//    // Add a new policy
+//    public Policy addPolicy(Policy policy) {
+//        return policyRepository.save(policy);
+//    }
+//
+//    // Update an existing policy
+//    public Policy updatePolicy(Long id, Policy updatedPolicy) {
+//        Policy existingPolicy = policyRepository.findById(id).orElseThrow(
+//                () -> new RuntimeException("Policy not found with id: " + id)
+//        );
+//        existingPolicy.setPolicyName(updatedPolicy.getPolicyName());
+//        existingPolicy.setPolicyHolderName(updatedPolicy.getPolicyHolderName());
+//        existingPolicy.setStartDate(updatedPolicy.getStartDate());
+//        existingPolicy.setEndDate(updatedPolicy.getEndDate());
+//        existingPolicy.setPremiumAmount(updatedPolicy.getPremiumAmount());
+//        return policyRepository.save(existingPolicy);
+//    }
+//
+//    // Delete a policy by ID
+//    public void deletePolicy(Long id) {
+//        policyRepository.deleteById(id);
+//    }
+//
+//    // Get a policy by ID
+//    public Policy getPolicyById(Long id) {
+//        return policyRepository.findById(id).orElseThrow(
+//                () -> new RuntimeException("Policy not found with id: " + id)
+//        );
+//    }
+//}
+
+package com.insurance.service;
+
+import com.insurance.model.Policy;
+import java.util.List;
+import java.util.Optional;
+
+public interface PolicyService {
+    List<Policy> getAllPolicies();
+    Optional<Policy> getPolicyById(Long id);
+    Policy addPolicy(Policy policy);
+    Policy updatePolicy(Long id, Policy policy);
+    void deletePolicy(Long id);
+}
+

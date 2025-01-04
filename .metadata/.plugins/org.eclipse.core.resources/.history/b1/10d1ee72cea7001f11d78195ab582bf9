@@ -1,0 +1,328 @@
+package com.insurance.model;
+
+//import jakarta.persistence.*;
+//
+//
+//import java.time.LocalDate;
+
+//@Entity
+//@Table(name = "policies")
+//public class Policy {
+//
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+////    private Long id;
+//
+//    private String policyName;
+//    private String policyNumber;
+//    private String policyType;
+//    private int policyTerm; // in years
+//    private LocalDate startDate;
+//    private LocalDate endDate;
+//    private double premiumAmount;
+//    private String paymentFrequency;
+//    private String nomineeName;
+//    private LocalDate lastPaymentDate;
+//    private LocalDate nextPaymentDueDate;
+//
+//    private String fullName;
+//    private LocalDate dateOfBirth;
+//    private String contactNumber;
+//    private String emailAddress;
+//	public Long getId() {
+//		return id;
+//	}
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+//	public String getPolicyName() {
+//		return policyName;
+//	}
+//	public void setPolicyName(String policyName) {
+//		this.policyName = policyName;
+//	}
+//	public String getPolicyNumber() {
+//		return policyNumber;
+//	}
+//	public void setPolicyNumber(String policyNumber) {
+//		this.policyNumber = policyNumber;
+//	}
+//	public String getPolicyType() {
+//		return policyType;
+//	}
+//	public void setPolicyType(String policyType) {
+//		this.policyType = policyType;
+//	}
+//	public int getPolicyTerm() {
+//		return policyTerm;
+//	}
+//	public void setPolicyTerm(int policyTerm) {
+//		this.policyTerm = policyTerm;
+//	}
+//	public LocalDate getStartDate() {
+//		return startDate;
+//	}
+//	public void setStartDate(LocalDate startDate) {
+//		this.startDate = startDate;
+//	}
+//	public LocalDate getEndDate() {
+//		return endDate;
+//	}
+//	public void setEndDate(LocalDate endDate) {
+//		this.endDate = endDate;
+//	}
+//	public double getPremiumAmount() {
+//		return premiumAmount;
+//	}
+//	public void setPremiumAmount(double premiumAmount) {
+//		this.premiumAmount = premiumAmount;
+//	}
+//	public String getPaymentFrequency() {
+//		return paymentFrequency;
+//	}
+//	public void setPaymentFrequency(String paymentFrequency) {
+//		this.paymentFrequency = paymentFrequency;
+//	}
+//	public String getNomineeName() {
+//		return nomineeName;
+//	}
+//	public void setNomineeName(String nomineeName) {
+//		this.nomineeName = nomineeName;
+//	}
+//	public LocalDate getLastPaymentDate() {
+//		return lastPaymentDate;
+//	}
+//	public void setLastPaymentDate(LocalDate lastPaymentDate) {
+//		this.lastPaymentDate = lastPaymentDate;
+//	}
+//	public LocalDate getNextPaymentDueDate() {
+//		return nextPaymentDueDate;
+//	}
+//	public void setNextPaymentDueDate(LocalDate nextPaymentDueDate) {
+//		this.nextPaymentDueDate = nextPaymentDueDate;
+//	}
+//	public String getFullName() {
+//		return fullName;
+//	}
+//	public void setFullName(String fullName) {
+//		this.fullName = fullName;
+//	}
+//	public LocalDate getDateOfBirth() {
+//		return dateOfBirth;
+//	}
+//	public void setDateOfBirth(LocalDate dateOfBirth) {
+//		this.dateOfBirth = dateOfBirth;
+//	}
+//	public String getContactNumber() {
+//		return contactNumber;
+//	}
+//	public void setContactNumber(String contactNumber) {
+//		this.contactNumber = contactNumber;
+//	}
+//	public String getEmailAddress() {
+//		return emailAddress;
+//	}
+//	public void setEmailAddress(String emailAddress) {
+//		this.emailAddress = emailAddress;
+//	}
+    
+    
+    import java.time.LocalDate;
+    import javax.validation.constraints;
+    import org.hibernate.validator.constraints.Length;
+
+    @Entity
+    public class Policy {
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+
+        @NotBlank(message = "Policy Name is required")
+        @Pattern(regexp = "^[a-zA-Z\\s]*$", message = "Policy Name should contain only alphabetic characters.")
+        private String policyName;
+
+        @NotBlank(message = "Policy Number is required")
+        @Pattern(regexp = "^\\d{10}$", message = "Policy Number must be numeric and exactly 10 digits.")
+        private String policyNumber;
+
+        @NotBlank(message = "Policy Type is required")
+        @Pattern(regexp = "^[a-zA-Z\\s]*$", message = "Policy Type should contain only alphabetic characters.")
+        private String policyType;
+
+        @Min(value = 1, message = "Policy Term must be at least 1 year.")
+        private int policyTerm;
+
+        @NotNull(message = "Start Date is required")
+        private LocalDate startDate;
+
+        @NotNull(message = "End Date is required")
+        private LocalDate endDate;
+
+        @Min(value = 0, message = "Premium Amount must be a positive number.")
+        private double premiumAmount;
+
+        @NotBlank(message = "Payment Frequency is required")
+        private String paymentFrequency;
+
+        @NotBlank(message = "Nominee Name is required")
+        @Pattern(regexp = "^[a-zA-Z\\s]*$", message = "Nominee Name should contain only alphabetic characters.")
+        private String nomineeName;
+
+        @NotNull(message = "Last Payment Date is required")
+        private LocalDate lastPaymentDate;
+
+        @NotNull(message = "Next Payment Due Date is required")
+        private LocalDate nextPaymentDueDate;
+
+        @NotBlank(message = "Full Name is required")
+        @Pattern(regexp = "^[a-zA-Z\\s]*$", message = "Full Name should contain only alphabetic characters.")
+        private String fullName;
+
+        @NotNull(message = "Date of Birth is required")
+        private LocalDate dateOfBirth;
+
+        @NotBlank(message = "Contact Number is required")
+        @Pattern(regexp = "^\\d{10}$", message = "Contact Number must be numeric and exactly 10 digits.")
+        private String contactNumber;
+
+        @Email(message = "Email Address must be a valid email.")
+        @NotBlank(message = "Email Address is required")
+        private String emailAddress;
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getPolicyName() {
+			return policyName;
+		}
+
+		public void setPolicyName(String policyName) {
+			this.policyName = policyName;
+		}
+
+		public String getPolicyNumber() {
+			return policyNumber;
+		}
+
+		public void setPolicyNumber(String policyNumber) {
+			this.policyNumber = policyNumber;
+		}
+
+		public String getPolicyType() {
+			return policyType;
+		}
+
+		public void setPolicyType(String policyType) {
+			this.policyType = policyType;
+		}
+
+		public int getPolicyTerm() {
+			return policyTerm;
+		}
+
+		public void setPolicyTerm(int policyTerm) {
+			this.policyTerm = policyTerm;
+		}
+
+		public LocalDate getStartDate() {
+			return startDate;
+		}
+
+		public void setStartDate(LocalDate startDate) {
+			this.startDate = startDate;
+		}
+
+		public LocalDate getEndDate() {
+			return endDate;
+		}
+
+		public void setEndDate(LocalDate endDate) {
+			this.endDate = endDate;
+		}
+
+		public double getPremiumAmount() {
+			return premiumAmount;
+		}
+
+		public void setPremiumAmount(double premiumAmount) {
+			this.premiumAmount = premiumAmount;
+		}
+
+		public String getPaymentFrequency() {
+			return paymentFrequency;
+		}
+
+		public void setPaymentFrequency(String paymentFrequency) {
+			this.paymentFrequency = paymentFrequency;
+		}
+
+		public String getNomineeName() {
+			return nomineeName;
+		}
+
+		public void setNomineeName(String nomineeName) {
+			this.nomineeName = nomineeName;
+		}
+
+		public LocalDate getLastPaymentDate() {
+			return lastPaymentDate;
+		}
+
+		public void setLastPaymentDate(LocalDate lastPaymentDate) {
+			this.lastPaymentDate = lastPaymentDate;
+		}
+
+		public LocalDate getNextPaymentDueDate() {
+			return nextPaymentDueDate;
+		}
+
+		public void setNextPaymentDueDate(LocalDate nextPaymentDueDate) {
+			this.nextPaymentDueDate = nextPaymentDueDate;
+		}
+
+		public String getFullName() {
+			return fullName;
+		}
+
+		public void setFullName(String fullName) {
+			this.fullName = fullName;
+		}
+
+		public LocalDate getDateOfBirth() {
+			return dateOfBirth;
+		}
+
+		public void setDateOfBirth(LocalDate dateOfBirth) {
+			this.dateOfBirth = dateOfBirth;
+		}
+
+		public String getContactNumber() {
+			return contactNumber;
+		}
+
+		public void setContactNumber(String contactNumber) {
+			this.contactNumber = contactNumber;
+		}
+
+		public String getEmailAddress() {
+			return emailAddress;
+		}
+
+		public void setEmailAddress(String emailAddress) {
+			this.emailAddress = emailAddress;
+		}
+        
+        
+
+        // Getters and Setters
+    }
+
+    
+    
+

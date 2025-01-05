@@ -96,7 +96,7 @@ insurance-policy-manager/
 │   ├── pom.xml
 └── db/
     └── insurance_db.sql
-
+```
 
 ### Technologies Used
 #### Frontend:
